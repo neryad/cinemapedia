@@ -4,6 +4,8 @@
     "datasource",
     "Datasource",
     "dotenv",
-    "moviedb"
+    "enviroemnt",
+    "moviedb",
+    "riverpod"
   ]
 }
