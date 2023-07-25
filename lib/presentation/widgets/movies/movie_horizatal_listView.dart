@@ -36,7 +36,6 @@ class _MovieHorizontalListViewState extends State<MovieHorizontalListView> {
 
       if ((scrollController.position.pixels + 200) >=
           scrollController.position.maxScrollExtent) {
-        print('object');
         widget.loadNextPage!();
       }
     });
@@ -52,7 +51,7 @@ class _MovieHorizontalListViewState extends State<MovieHorizontalListView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 340,
+      height: 350,
       child: Column(children: [
         if (widget.title != null || widget.subtitle != null)
           _Tittle(
@@ -88,6 +87,7 @@ class _Slide extends StatelessWidget {
           children: [
             SizedBox(
               width: 150,
+              // height: 200,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
@@ -167,7 +167,7 @@ class _Tittle extends StatelessWidget {
             style: titleStyle,
           ),
         const Spacer(),
-        if (title != null)
+        if (subTitle != null)
           FilledButton.tonal(
             style: const ButtonStyle(visualDensity: VisualDensity.compact),
             onPressed: () {},

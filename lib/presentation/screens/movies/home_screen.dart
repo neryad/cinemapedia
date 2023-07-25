@@ -35,31 +35,53 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final nowPlayingMoviesSlide = ref.watch(moviesSlideShowProvider);
 
-    return Column(
-      children: [
-        const CustomAppBar(),
-        MoviesSlideShow(movies: nowPlayingMoviesSlide),
-        MovieHorizontalListView(
-          movies: nowPlayingMovies,
-          title: 'En cines',
-          subtitle: 'lunes 20',
-          loadNextPage: () {
-            ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-          },
-        )
-        // Expanded(
-        //   child: ListView.builder(
-        //     itemCount: nowPlayingMovies.length,
-        //     itemBuilder: (context, index) {
-        //       final movie = nowPlayingMovies[index];
-
-        //       return ListTile(
-        //         title: Text(movie.title),
-        //       );
-        //     },
-        //   ),
-        // )
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const CustomAppBar(),
+          MoviesSlideShow(movies: nowPlayingMoviesSlide),
+          MovieHorizontalListView(
+            movies: nowPlayingMovies,
+            title: 'En cines',
+            subtitle: 'lunes 20',
+            loadNextPage: () {
+              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+            },
+          ),
+          MovieHorizontalListView(
+            movies: nowPlayingMovies,
+            title: 'En cines',
+            subtitle: 'lunes 20',
+            loadNextPage: () {
+              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+            },
+          ),
+          MovieHorizontalListView(
+            movies: nowPlayingMovies,
+            title: 'Próximamente',
+            subtitle: 'En este mes',
+            loadNextPage: () {
+              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+            },
+          ),
+          MovieHorizontalListView(
+            movies: nowPlayingMovies,
+            title: 'Populares',
+            //subtitle: 'lunes 20',
+            loadNextPage: () {
+              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+            },
+          ),
+          MovieHorizontalListView(
+            movies: nowPlayingMovies,
+            title: 'Mejor calificados',
+            subtitle: 'De simpre',
+            loadNextPage: () {
+              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+            },
+          )
+        ],
+      ),
     );
   }
 }
