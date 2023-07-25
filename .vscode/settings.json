@@ -1,11 +1,13 @@
 {
   "cSpell.words": [
+    "autoplay",
     "cinemapedia",
     "datasource",
     "Datasource",
     "dotenv",
     "enviroemnt",
     "moviedb",
-    "riverpod"
+    "riverpod",
+    "Swiper"
   ]
 }
