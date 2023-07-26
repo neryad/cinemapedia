@@ -28,12 +28,18 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   void initState() {
     super.initState();
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+    ref.read(popularMoviesProvider.notifier).loadNextPage();
+    ref.read(upComingMoviesProvider.notifier).loadNextPage();
+    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final nowPlayingMoviesSlide = ref.watch(moviesSlideShowProvider);
+    final popularMovies = ref.watch(popularMoviesProvider);
+    final upComingMovies = ref.watch(upComingMoviesProvider);
+    final topRatedMovies = ref.watch(topRatedMoviesProvider);
 
     return CustomScrollView(
       slivers: [
@@ -57,24 +63,17 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
                 },
               ),
+
               MovieHorizontalListView(
-                movies: nowPlayingMovies,
-                title: 'En cines',
-                subtitle: 'lunes 20',
-                loadNextPage: () {
-                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-                },
-              ),
-              MovieHorizontalListView(
-                movies: nowPlayingMovies,
+                movies: upComingMovies,
                 title: 'Próximamente',
                 subtitle: 'En este mes',
                 loadNextPage: () {
-                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                  ref.read(upComingMoviesProvider.notifier).loadNextPage();
                 },
               ),
               MovieHorizontalListView(
-                movies: nowPlayingMovies,
+                movies: popularMovies,
                 title: 'Populares',
                 //subtitle: 'lunes 20',
                 loadNextPage: () {
@@ -82,11 +81,11 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                 },
               ),
               MovieHorizontalListView(
-                movies: nowPlayingMovies,
+                movies: topRatedMovies,
                 title: 'Mejor calificados',
-                subtitle: 'De simpre',
+                subtitle: 'De siempre',
                 loadNextPage: () {
-                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                  ref.read(topRatedMoviesProvider.notifier).loadNextPage();
                 },
               )
             ],
