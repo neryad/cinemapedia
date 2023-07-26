@@ -35,53 +35,64 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final nowPlayingMoviesSlide = ref.watch(moviesSlideShowProvider);
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const CustomAppBar(),
-          MoviesSlideShow(movies: nowPlayingMoviesSlide),
-          MovieHorizontalListView(
-            movies: nowPlayingMovies,
-            title: 'En cines',
-            subtitle: 'lunes 20',
-            loadNextPage: () {
-              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-            },
+    return CustomScrollView(
+      slivers: [
+        const SliverAppBar(
+          floating: true,
+          flexibleSpace: FlexibleSpaceBar(
+            title: CustomAppBar(),
           ),
-          MovieHorizontalListView(
-            movies: nowPlayingMovies,
-            title: 'En cines',
-            subtitle: 'lunes 20',
-            loadNextPage: () {
-              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-            },
-          ),
-          MovieHorizontalListView(
-            movies: nowPlayingMovies,
-            title: 'Próximamente',
-            subtitle: 'En este mes',
-            loadNextPage: () {
-              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-            },
-          ),
-          MovieHorizontalListView(
-            movies: nowPlayingMovies,
-            title: 'Populares',
-            //subtitle: 'lunes 20',
-            loadNextPage: () {
-              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-            },
-          ),
-          MovieHorizontalListView(
-            movies: nowPlayingMovies,
-            title: 'Mejor calificados',
-            subtitle: 'De simpre',
-            loadNextPage: () {
-              ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
-            },
-          )
-        ],
-      ),
+        ),
+        SliverList(
+            delegate: SliverChildBuilderDelegate((context, index) {
+          return Column(
+            children: [
+              //const CustomAppBar(),
+              MoviesSlideShow(movies: nowPlayingMoviesSlide),
+              MovieHorizontalListView(
+                movies: nowPlayingMovies,
+                title: 'En cines',
+                subtitle: 'lunes 20',
+                loadNextPage: () {
+                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                },
+              ),
+              MovieHorizontalListView(
+                movies: nowPlayingMovies,
+                title: 'En cines',
+                subtitle: 'lunes 20',
+                loadNextPage: () {
+                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                },
+              ),
+              MovieHorizontalListView(
+                movies: nowPlayingMovies,
+                title: 'Próximamente',
+                subtitle: 'En este mes',
+                loadNextPage: () {
+                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                },
+              ),
+              MovieHorizontalListView(
+                movies: nowPlayingMovies,
+                title: 'Populares',
+                //subtitle: 'lunes 20',
+                loadNextPage: () {
+                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                },
+              ),
+              MovieHorizontalListView(
+                movies: nowPlayingMovies,
+                title: 'Mejor calificados',
+                subtitle: 'De simpre',
+                loadNextPage: () {
+                  ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+                },
+              )
+            ],
+          );
+        }, childCount: 1))
+      ],
     );
   }
 }
