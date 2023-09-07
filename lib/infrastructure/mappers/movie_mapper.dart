@@ -17,7 +17,8 @@ class MovieMapper {
       posterPath: (movieDB.posterPath != "")
           ? 'https://image.tmdb.org/t/p/w500/${movieDB.posterPath}'
           : 'no-poster',
-      releaseDate: movieDB.releaseDate,
+      releaseDate:
+          movieDB.releaseDate != null ? movieDB.releaseDate! : DateTime.now(),
       title: movieDB.title,
       video: movieDB.video,
       voteAverage: movieDB.voteAverage,
@@ -36,7 +37,7 @@ class MovieMapper {
       popularity: movieDB.popularity,
       posterPath: (movieDB.posterPath != "")
           ? 'https://image.tmdb.org/t/p/w500/${movieDB.posterPath}'
-          : 'no-poster',
+          : 'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg',
       releaseDate: movieDB.releaseDate,
       title: movieDB.title,
       video: movieDB.video,
