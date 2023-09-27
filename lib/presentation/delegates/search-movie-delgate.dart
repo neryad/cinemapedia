@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cinemapedia/config/helpers/human_format.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/domain/entities/movie.dart';
@@ -96,6 +97,18 @@ class MovieSearchItem extends StatelessWidget {
               (movie.overview.length > 100)
                   ? Text('${movie.overview.substring(0, 100)}...')
                   : Text(movie.overview),
+              Row(
+                children: [
+                  Icon(Icons.star_half_rounded, color: Colors.yellow.shade800),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    HumanFormats.number(movie.voteAverage, 1),
+                    style: TextStyle(color: Colors.yellow.shade900),
+                  )
+                ],
+              )
             ]),
           ),
         ],
